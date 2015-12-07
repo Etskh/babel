@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include <memory>
+
 #include "core/String.hpp"
 
 

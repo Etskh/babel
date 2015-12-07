@@ -7,11 +7,14 @@ class Application
 {
 public:
 	/// Constructor
-			Application	( int argc, char** argv );
-
+					Application		( int argc, char** argv );
+	virtual     	~Application	( void );
 public:
 	/// Used in the return function of main()
-	int		exec		(void);
+	int				exec			( void );
+
+public:
+	virtual void	OnUpdate		( void );
 };
 
 } // namespace core

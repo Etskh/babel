@@ -3,7 +3,12 @@
 
 using namespace core;
 
-Application::Application	( int argc, char** argv )
+Application::Application	( int, char**)
+{
+	// empty
+}
+
+Application::~Application	( void )
 {
 	// empty
 }
@@ -11,4 +16,9 @@ Application::Application	( int argc, char** argv )
 int		Application::exec		(void)
 {
 	return 0;
+}
+
+void	Application::OnUpdate		( void )
+{
+	// empty
 }
