@@ -1,0 +1,8 @@
+
+#
+# Remove generated folders
+#
+docs
+build
+
+

@@ -1,0 +1,2 @@
+#!/bin/sh
+python cpplint.py --counting=detailed --filter=-whitespace,-legal/copyright,-build/namespaces --extensions=hpp,cpp $( find src -name \*.hpp -or -name \*.cpp )
