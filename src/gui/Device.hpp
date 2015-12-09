@@ -9,6 +9,7 @@
 
 // Core includes
 #include "core/Config.hpp"
+#include "core/Event.hpp"
 
 // GUI includes
 #include "gui/GUISurfaceFactory.hpp"
@@ -24,7 +25,7 @@ public:
 	bool					destroy		( void );
 
 public:
-	void					update		( void );
+	bool					update		( core::Event& event );
 	void					loadGUI		( const char* name, const char* dirPath );
 
 public:

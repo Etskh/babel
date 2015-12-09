@@ -2,8 +2,8 @@
 // External libraries
 #include <SDL2/SDL_version.h>
 
-// Utils
-#include "util/safeDelete.hpp"
+// Core includes
+#include "core/Event.hpp"
 
 // Header
 #include "BabelApplication.hpp"
@@ -15,7 +15,7 @@ using namespace babel;
 
 BabelApplication::BabelApplication( const core::Config& config )
     : Application	( config )
-	, _device		()
+	, _device		( this )
 {
 	printf(" --- Babel Code init ---\n");
 
@@ -35,7 +35,7 @@ BabelApplication::BabelApplication( const core::Config& config )
 	//config["height"]= "100";
 	//config["title"] = "Babel Coder";
 	_device = gui::Device::create(config);
-	_device->loadGUI("../data/");
+	//_device->loadGUI("../data/");
 
 	printf(" -- end -- \n");
 }
@@ -56,11 +56,9 @@ BabelApplication::~BabelApplication (void)
 
 
 
-void	BabelApplication::OnUpdate	( void )
+bool	BabelApplication::update	( core::Event& event )
 {
 	SDL_Event e;
-
-	_device->update();
 
 	while (SDL_PollEvent(&e)){
 		if (e.type == SDL_QUIT){

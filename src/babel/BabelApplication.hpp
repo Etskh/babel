@@ -20,8 +20,8 @@ public:
                 BabelApplication    ( const core::Config& config );
     virtual     ~BabelApplication   ( void );
 
-public:
-    void		OnUpdate			( void );
+
+    bool        update              ( Event& event );
 
 private:
 	gui::Device::Handle	_device;

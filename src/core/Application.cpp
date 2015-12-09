@@ -17,15 +17,11 @@ Application::~Application	( void )
 
 int		Application::exec		(void)
 {
-	while (!_willQuit){
-		this->OnUpdate();
+	Event event;
+	while (!_willQuit) {
+		OnUpdate.call(event);
 	}
 	return _exitCode;
-}
-
-void	Application::OnUpdate		( void )
-{
-
 }
 
 bool	Application::exit			( int exitCode )

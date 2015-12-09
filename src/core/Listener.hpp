@@ -13,7 +13,8 @@
 
 
 // STL
-#include <function>
+#include <functional>
+#include <list>
 
 // Core includes
 #include "core/Event.hpp"
@@ -38,6 +39,10 @@ public:
 
 	/// Add a callback to this event-listener
 	bool		operator+=		( Callback callback );
+
+
+	/// Actual functiony thing for adding callbacks - use += instead. It's cooler.
+	bool		addCallback		( Callback callback );
 
 
 	/// Syntactic sugar for call function
