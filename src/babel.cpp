@@ -1,11 +1,8 @@
 /*
 
 */
-// Awesomium
-#include <Awesomium/WebCore.h>
-
-// Core
-//using namespace core;
+// Core Includes
+#include "core/Config.hpp"
 
 // Babel
 #include "babel/BabelApplication.hpp"
@@ -16,7 +13,8 @@ using namespace babel;
 int main(int argc, char* argv[]) {
 
 	// Create the one application
-	BabelApplication app(argc,argv);
+	core::Config config(argc,argv);
+	BabelApplication app(config);
 
 	// Create the base objects
 	// TODO(Etskh): bring these in from the web

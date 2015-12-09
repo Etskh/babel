@@ -2,7 +2,7 @@
 
 namespace core {
 
-class Event
+class Listener
 {
 public:
 

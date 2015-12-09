@@ -3,7 +3,9 @@
 
 using namespace core;
 
-Application::Application	( int, char**)
+Application::Application	( const core::Config& )
+	: _exitCode (0)
+	, _willQuit (false)
 {
 	// empty
 }
@@ -15,10 +17,21 @@ Application::~Application	( void )
 
 int		Application::exec		(void)
 {
-	return 0;
+	while (!_willQuit){
+		this->OnUpdate();
+	}
+	return _exitCode;
 }
 
 void	Application::OnUpdate		( void )
 {
-	// empty
+
+}
+
+bool	Application::exit			( int exitCode )
+{
+	bool wasGoingToQuitAnyway = _willQuit;
+	_exitCode = exitCode;
+	_willQuit = true;
+	return wasGoingToQuitAnyway;
 }

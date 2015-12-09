@@ -32,3 +32,4 @@ add_subdirectory(extern/duktape-1.3.1)
 
 target_link_libraries(${PROJECT_NAME} duktape)
 target_link_libraries(${PROJECT_NAME} ${AWESOMIUM_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
