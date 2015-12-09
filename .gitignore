@@ -3,7 +3,7 @@
 # Remove generated folders
 #
 docs
-build
+build/*
 
 #
 # Weird other files

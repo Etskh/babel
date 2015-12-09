@@ -10,7 +10,7 @@ Config::Config		( void )
 
 Config::Config		( int , char** )
 {
-	// TODO: Do this in here
+	///TODO(Etskh): Parse the arguments and add them to the config
 }
 
 

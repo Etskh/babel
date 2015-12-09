@@ -25,6 +25,7 @@ public:
 
 public:
 	void					update		( void );
+	void					loadGUI		( const char* name, const char* dirPath );
 
 public:
 							Device		( SDL_Window* window, int width, int height );

@@ -28,7 +28,6 @@ public:
 
 public:
 	/// Runs the Object
-	// TODO(Etskh): add arguments in this function (as an array)
 	int						run			( const core::Array& args );
 	/// Adds a child to the object
 	void					addChild	( const Object::Handle child );

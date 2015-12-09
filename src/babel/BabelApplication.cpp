@@ -17,9 +17,7 @@ BabelApplication::BabelApplication( const core::Config& config )
     : Application	( config )
 	, _device		()
 {
-	//_webcore = Awesomium::WebCore::Initialize(Awesomium::WebConfig());
 	printf(" --- Babel Code init ---\n");
-	//printf("Log: Awesomium webcore %s initialised\n", _webcore->version_string() );
 
     if( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
 		printf("SDL Init failed: %s\n", SDL_GetError() );
@@ -37,6 +35,7 @@ BabelApplication::BabelApplication( const core::Config& config )
 	//config["height"]= "100";
 	//config["title"] = "Babel Coder";
 	_device = gui::Device::create(config);
+	_device->loadGUI("../data/");
 
 	printf(" -- end -- \n");
 }

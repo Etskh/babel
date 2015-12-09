@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	BabelApplication app(config);
 
 	// Create the base objects
-	// TODO(Etskh): bring these in from the web
+	///TODO(Etskh): bring these in from the web
 	Object::Handle babelCore = Object::create(core::String("Core"));
 	Object::Handle babelString = Object::create(core::String("String"));
 	Object::Handle babelStringIndexOf = Object::create(core::String("indexOf"));
@@ -33,7 +33,6 @@ int main(int argc, char* argv[]) {
 	code->setText("print(\"Works.\")");
 	code->setLang("javascript");
 	entry->setRawCode( code );
-
 
 	// ... when the user hits "build & run"
 	// Run the code

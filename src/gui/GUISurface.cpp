@@ -35,7 +35,7 @@ void	GUISurface::Paint	(
 			const Awesomium::Rect& /*dest_rect*/
 		)
 {
-	// TODO: Draw only what you need to draw
+	/// TODO(Etskh): Draw only what you need to draw
     SDL_Surface* screen = SDL_GetWindowSurface(_window);
 	SDL_Surface* websurface = SDL_CreateRGBSurfaceFrom(
 		src_buffer,
