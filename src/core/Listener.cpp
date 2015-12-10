@@ -27,20 +27,21 @@ bool	Listener::addCallback	( Callback callback )
 
 
 
-bool	Listener::operator()	( Event& event )
+/*bool	Listener::operator()	( Event& event )
 {
 	return this->call(event);
 }
+*/
 
 
 
 bool	Listener::call		( Event& event )
 {
 	auto callback = _callbacks.begin();
-	bool captured = false;
-	while ( callback != _callbacks.end() && ! captured )
+	bool captured = true;
+	while ( callback != _callbacks.end() )
 	{
-		captured = (*callback)(event);
+		captured = captured && (*callback)(event);
 		callback++;
 	}
 	return captured;

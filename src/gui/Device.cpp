@@ -19,11 +19,11 @@ Device::Handle		Device::create	( core::Application* app, const core::Config& )
 	SDL_Window* window(nullptr);
 
 	//if( ! config["width"].to<int>( &width )) {
-		width = 200;
 	//}
-	//if( ! config["height"].to<int>( &height )) {
-		height = 100;
-	//}
+	
+	
+	width = 200;
+	height = 100;
 
 	window = SDL_CreateWindow(
 		"Babel Code", //config["title"].c_str(),
@@ -38,6 +38,7 @@ Device::Handle		Device::create	( core::Application* app, const core::Config& )
 		return Device::Handle();
 	}
 	else {
+		// Finally 
 		Device::Handle device( new Device( app, window, width, height) );
 
 		// Check that the view was created properly
@@ -95,8 +96,8 @@ Device::Device			( core::Application* app, SDL_Window* window, int width, int he
 
 
 	// Register for the OnUpdate event
-	//app->OnUpdate += CALLBACK( &Device::update );
-	app->OnUpdate += std::bind1st(std::mem_fun( &Device::update ), this);
+	app->OnUpdate += CALLBACK( &Device::update );
+	//app->OnUpdate += std::bind( &Device::update, this, std::placeholders::_1 );
 }
 
 

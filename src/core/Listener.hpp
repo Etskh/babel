@@ -41,7 +41,7 @@ public:
 
 
 	/// Syntactic sugar for call function
-	bool		operator()		( Event& event );
+	//bool		operator()		( Event& event );
 
 
 	/// Call the event and fire callbacks

@@ -33,6 +33,8 @@ BabelApplication::BabelApplication( const core::Config& config )
 		compiled.major, compiled.minor, compiled.patch
 	);
 
+	OnUpdate += CALLBACK( &BabelApplication::update );
+	
 	// Create the device
 	//config["width"] = "100";
 	//config["height"]= "100";
@@ -62,7 +64,6 @@ BabelApplication::~BabelApplication (void)
 bool	BabelApplication::update	( core::Event& )
 {
 	SDL_Event e;
-
 	while (SDL_PollEvent(&e)){
 		if (e.type == SDL_QUIT){
 			exit(0);
@@ -75,5 +76,5 @@ bool	BabelApplication::update	( core::Event& )
 		}
 	}
 
-	//exit(0);
+	return true;
 }
