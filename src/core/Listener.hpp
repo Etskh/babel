@@ -19,11 +19,6 @@
 // Core includes
 #include "core/Event.hpp"
 
-/// Used as a handy in-place way of creating a std::function<>
-///		It is accessible to every class that will include a
-///		class that inherits from Listener
-#define CALLBACK ( X ) std::bind1st(std::mem_fun( X ), this);
-
 
 namespace core {
 

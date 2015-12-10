@@ -21,7 +21,7 @@ public:
     virtual     ~BabelApplication   ( void );
 
 
-    bool        update              ( Event& event );
+    bool        update              ( core::Event& event );
 
 private:
 	gui::Device::Handle	_device;

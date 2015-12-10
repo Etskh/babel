@@ -13,9 +13,10 @@
 
 using namespace gui;
 
-Device::Handle		Device::create	( const core::Config& )
+Device::Handle		Device::create	( core::Application* app, const core::Config& )
 {
 	int width, height;
+	SDL_Window* window(nullptr);
 
 	//if( ! config["width"].to<int>( &width )) {
 		width = 200;
@@ -24,7 +25,7 @@ Device::Handle		Device::create	( const core::Config& )
 		height = 100;
 	//}
 
-	SDL_Window* window = SDL_CreateWindow(
+	window = SDL_CreateWindow(
 		"Babel Code", //config["title"].c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
@@ -37,7 +38,7 @@ Device::Handle		Device::create	( const core::Config& )
 		return Device::Handle();
 	}
 	else {
-		Device::Handle device( new Device(window, width, height) );
+		Device::Handle device( new Device( app, window, width, height) );
 
 		// Check that the view was created properly
 		if( device->_view == nullptr ) {
@@ -66,15 +67,18 @@ bool				Device::destroy	( void )
 	return true;
 }
 
-void				Device::update	( void )
+bool				Device::update	( core::Event& )
 {
 	_webcore->Update();
+
+	return true;
 }
 
 
-Device::Device			( SDL_Window* window, int width, int height )
-	: _sufaceFactory( window )
-	, _window	( nullptr )
+Device::Device			( core::Application* app, SDL_Window* window, int width, int height )
+	: _app ( app )
+	, _sufaceFactory( window )
+	, _window   ( window )
 	, _webcore	( nullptr )
 	, _view		( nullptr )
 {
@@ -88,6 +92,11 @@ Device::Device			( SDL_Window* window, int width, int height )
 
 	// Finally, create the GUI interface
 	_view = _webcore->CreateWebView( width, height, 0, Awesomium::kWebViewType_Offscreen );
+
+
+	// Register for the OnUpdate event
+	//app->OnUpdate += CALLBACK( &Device::update );
+	app->OnUpdate += std::bind1st(std::mem_fun( &Device::update ), this);
 }
 
 

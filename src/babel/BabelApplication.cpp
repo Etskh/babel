@@ -5,6 +5,9 @@
 // Core includes
 #include "core/Event.hpp"
 
+// Util includes
+#include "util/safeDelete.hpp"
+
 // Header
 #include "BabelApplication.hpp"
 
@@ -15,7 +18,7 @@ using namespace babel;
 
 BabelApplication::BabelApplication( const core::Config& config )
     : Application	( config )
-	, _device		( this )
+	, _device		( nullptr )
 {
 	printf(" --- Babel Code init ---\n");
 
@@ -34,7 +37,7 @@ BabelApplication::BabelApplication( const core::Config& config )
 	//config["width"] = "100";
 	//config["height"]= "100";
 	//config["title"] = "Babel Coder";
-	_device = gui::Device::create(config);
+	_device = gui::Device::create( this, config);
 	//_device->loadGUI("../data/");
 
 	printf(" -- end -- \n");
@@ -56,7 +59,7 @@ BabelApplication::~BabelApplication (void)
 
 
 
-bool	BabelApplication::update	( core::Event& event )
+bool	BabelApplication::update	( core::Event& )
 {
 	SDL_Event e;
 

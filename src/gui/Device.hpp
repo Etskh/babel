@@ -10,6 +10,7 @@
 // Core includes
 #include "core/Config.hpp"
 #include "core/Event.hpp"
+#include "core/Application.hpp"
 
 // GUI includes
 #include "gui/GUISurfaceFactory.hpp"
@@ -21,7 +22,7 @@ class Device
 public:
 	typedef std::shared_ptr<Device>	Handle;
 public:
-	static Device::Handle	create		( const core::Config& config );
+	static Device::Handle	create		( core::Application* app, const core::Config& config );
 	bool					destroy		( void );
 
 public:
@@ -29,10 +30,11 @@ public:
 	void					loadGUI		( const char* name, const char* dirPath );
 
 public:
-							Device		( SDL_Window* window, int width, int height );
+							Device		( core::Application* app, SDL_Window* window, int width, int height );
 	virtual					~Device		( void );
 
 private:
+	core::Application*      _app;
 	gui::GUISurfaceFactory	_sufaceFactory;
 	SDL_Window*				_window;
 	Awesomium::WebCore*		_webcore;
