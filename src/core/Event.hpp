@@ -12,6 +12,7 @@
 
 namespace core {
 
+/// Object to manage data passed between different events
 class Event
 {
 public:

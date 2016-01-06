@@ -13,11 +13,6 @@ Listener::~Listener	( void )
 }
 
 
-bool	Listener::operator+=	( Callback callback )
-{
-	return addCallback(callback);
-}
-
 
 bool	Listener::addCallback	( Callback callback )
 {

@@ -19,14 +19,16 @@ public:
 
 	/// Used to do OnUpdate loops
     Listener		OnUpdate;
+	/// Called after the constructor
+	Listener		OnInit;
+	/// Called before deconstruction
+	Listener		OnKill;
 
 
 
-public:
 	/// Used in the return function of main()
 	int				exec			( void );
 
-public:
 	/// Called in the event that the Application needs to close
 	bool			exit			( int exitCode );
 

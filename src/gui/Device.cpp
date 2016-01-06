@@ -1,6 +1,6 @@
 
 // STL
-#include <fstream>
+//// None
 
 // External libs
 #include <Awesomium/STLHelpers.h>
@@ -18,10 +18,6 @@ Device::Handle		Device::create	( core::Application* app, const core::Config& )
 	int width, height;
 	SDL_Window* window(nullptr);
 
-	//if( ! config["width"].to<int>( &width )) {
-	//}
-	
-	
 	width = 200;
 	height = 100;
 
@@ -38,7 +34,7 @@ Device::Handle		Device::create	( core::Application* app, const core::Config& )
 		return Device::Handle();
 	}
 	else {
-		// Finally 
+		// Finally
 		Device::Handle device( new Device( app, window, width, height) );
 
 		// Check that the view was created properly
@@ -46,14 +42,6 @@ Device::Handle		Device::create	( core::Application* app, const core::Config& )
 			printf("Error: %s\n", "Could not create WebView.");
 			return Device::Handle();
 		}
-
-		// Load in the first page
-		std::ifstream ifs("../data/babel.html");
-		std::string contents( (std::istreambuf_iterator<char>(ifs) ),
-                       (std::istreambuf_iterator<char>()) );
-		//printf(contents.c_str());
-		Awesomium::WebURL url(Awesomium::WSLit((std::string("data:text/html,") + contents).c_str()));
-		device->_view->LoadURL(url);
 
 		return device;
 	}
@@ -76,6 +64,16 @@ bool				Device::update	( core::Event& )
 }
 
 
+
+bool	Device::loadContent	( const char* content )
+{
+	Awesomium::WebURL url(Awesomium::WSLit((std::string("data:text/html,") + std::string(content)).c_str()));
+	_view->LoadURL(url);
+	return true;
+}
+
+
+
 Device::Device			( core::Application* app, SDL_Window* window, int width, int height )
 	: _app ( app )
 	, _sufaceFactory( window )
@@ -94,10 +92,8 @@ Device::Device			( core::Application* app, SDL_Window* window, int width, int he
 	// Finally, create the GUI interface
 	_view = _webcore->CreateWebView( width, height, 0, Awesomium::kWebViewType_Offscreen );
 
-
 	// Register for the OnUpdate event
 	app->OnUpdate += CALLBACK( &Device::update );
-	//app->OnUpdate += std::bind( &Device::update, this, std::placeholders::_1 );
 }
 
 

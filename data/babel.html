@@ -2,9 +2,137 @@
 <html>
 	<head>
 		<title>Babel</title>
+		<style>
+			BODY {
+				font-family: sans-serif;
+			}
+			.template {
+				/*display:none;*/
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Coder</h1>
-		<a href="#">Blackbox</a>
+		<div class="template" id="babel-object">
+			<div class="babel {{className}}">
+				<h1>{{name}}</h1>
+				<div class="children">{{children}}</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var objects = [{
+				"pk" : 1,
+				"name" : "Core",
+				"desc" : "The core Babel libraries. It has no other dependencies other than itself.",
+				"dependencies" : [],
+				"meta" : {
+					"authors" : ["Etskh"],
+					"added_on" : 20141211,
+					"modified_on" : 201512021920,
+					"version" : "0adbd12H3lfajasldknlAgJ2La9w109jfoaef",
+				},
+				"types" : [{
+					"name" : "String",
+					"desc" : "This is a basic string type that is a list of characters. It should be expanded to allow utf-8 encoded characters",
+					"meta" : {
+						"authors" : ["Etskh"],
+						"added_on" : 20141211,
+						"modified_on" : 201512021920,
+						"version" : "0adbd12H3lfajasldknlAgJ2La9w109jfoaef",
+					},
+					"methods" : [{
+						"name" : "length",
+						"desc" : "Gives the length of the string, in characters. For a representation of bytes, see size()",
+						"meta" : {
+							"authors" : ["Etskh"],
+							"added_on" : 20141211,
+							"modified_on" : 201512021920,
+							"version" : "0adbd12H3lfajasldknlAgJ2La9w109jfoaef",
+						},
+						"args" : [],
+						"returnType" : "PositiveInteger",
+					},{
+						"name" : "reverse",
+						"desc" : "Reverses the characters in the string. Returns nothing",
+						"meta" : {
+							"authors" : ["Etskh"],
+							"added_on" : 20141211,
+							"modified_on" : 201512021920,
+							"version" : "0adbd12H3lfajasldknlAgJ2La9w109jfoaef",
+						},
+						"args" : [],
+					},{
+						"name" : "substring",
+						"desc" : "Returns a subset of characters in the string",
+						"meta" : {
+							"authors" : ["Etskh"],
+							"added_on" : 20141211,
+							"modified_on" : 201512021920,
+							"version" : "0adbd12H3lfajasldknlAgJ2La9w109jfoaef",
+						},
+						"args" : [{
+							"name" : "start",
+							"desc" : "The index of the first character to be substringed, if negative, it counts from the back of the string",
+							"type" : "Integer",
+						},{
+							"name" : "number",
+							"desc" : "The number of characters to take. If the integer is Null, then it takes ",
+							"type" : "Nullable Integer",
+						}],
+					}],
+				}],
+			}];
+
+			var Babel = {
+
+				Init : function Init(objects) {
+					for(var o=0; o<objects.length; o++ ) {
+						Babel._impl.Load(objects[o], 'package', Babel._impl.getGlobal());
+					}
+				},
+				_impl : {
+					Load : function Load ( object, className, elem ) {
+						var templateElem = document.getElementById('babel-object');
+						var template = templateElem.innerHTML;
+						var replacements = {
+							"name" : object.name,
+							"children" : "",
+							"className" : className,
+						};
+
+						// Add in all the childrens
+						if ( object.types ) {
+							for ( var t=0; t < object.types.length; t++ ) {
+								replacements.children += Babel._impl.Load( object.types[t], "type" );
+							}
+						}
+
+						// Replace all the placeholders with
+						// the actual values!
+						for ( var val in replacements ) {
+							template = template.replace("{{"+val+"}}", replacements[val]);
+						}
+
+						// Add to dom if we have an element
+						if ( elem ) {
+							elem.innerHTML = template;
+						}
+						// Return it anyway
+						return template;
+					},
+
+					getGlobal : function getGlobal() {
+						var global = document.getElementById('babel');
+						if ( ! global ) {
+							global = document.createElement('div');
+							global.id = 'babel';
+							document.body.appendChild(global);
+						}
+						return global;
+					},
+				},
+			};
+
+			Babel.Init( objects );
+		</script>
 	</body>
 </html>

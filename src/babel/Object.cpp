@@ -59,6 +59,24 @@ const char*				Object::getName		( void ) const
 	return _name.c_str();
 }
 
+
+bool 		   Object::describe ( core::Serializer& serializer )
+{
+	serializer.begin("Object", babel::&Object, this );
+	{
+		serializer.addString("name", &_name );
+		serializer.begin("meta");
+		{
+			serializer.addString("version", &meta.version_hash );
+		}
+		serializer.end();
+	}
+	serializer.end();
+
+	return true;
+}
+
+
 Object::Object	( const core::String& name )
 	: _name(name)
 	, _desc("")

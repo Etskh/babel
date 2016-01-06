@@ -4,7 +4,11 @@
 */
 #pragma once
 
+// STL includes
 #include <string>
+
+// Core includes
+#include "Types.hpp"
 
 
 namespace core {
@@ -22,6 +26,13 @@ public:
 	String&			operator=	( const char* str );
 	/// Assignment from another String
 	String&			operator=	( const String& str );
+
+
+	/// Replace - like the PHP version, returns *this
+	String&			replace		( const char* subject, const char* replacement );
+	/// Replace - like the PHP version, but const
+	bool			replace		( const char* subject, const char* replacement, OUT String* out) const;
+
 
 
 	/// Make it into otherstuff
@@ -52,7 +63,10 @@ bool	String::from( const T& )
 	return false;
 }*/
 
-
+/**
+ * @param out the value to assign the integer to
+ * @returns true on success, false on failure
+ */
 template<>	bool	String::to		( int& out ) const;
 //template<>	bool	String::from	( const int& in );
 

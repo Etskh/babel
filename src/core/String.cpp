@@ -1,7 +1,7 @@
 
 // STL
 #include <cstdlib>
-
+#include <cassert>
 
 #include "String.hpp"
 
@@ -40,11 +40,54 @@ String&		String::operator=	( const String& str )
 }
 
 
+
+String&		String::replace		( const char* subject, const char* replacement )
+{
+	// Sanitize
+	assert( subject != nullptr );
+	assert( replacement != nullptr );
+
+	// Do the thing
+	replace(subject, replacement, this);
+
+	// Return it
+	return *this;
+}
+
+
+
+bool		String::replace		( const char* subject, const char* replacement, OUT String* out) const
+{
+	// Sanitize
+	assert( subject != nullptr );
+	assert( replacement != nullptr );
+	assert( out != nullptr );
+
+	// If it can't find it, then return false
+	size_t pos = _str.find(subject);
+	if( pos == std::string::npos ) {
+		return false;
+	}
+
+	// Do the thing
+	out->_str = _str;
+	out->_str.replace( pos, strlen(subject), replacement );
+
+	// We did the thing. Youppie!
+	return true;
+}
+
+
+
+
+
+
 template<>	bool	String::to	( int& out ) const
 {
 	out = atoi(_str.c_str());
 	return true;
 }
+
 /*
 template<>	bool	String::from( const int& in ) const
 {

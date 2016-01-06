@@ -21,21 +21,31 @@ public:
 	/// Destructor
 	virtual			~GUISurface	( void );
 
-public:
+	/**
+	 * Paints the window Inherited from Awesomium::Surface
+	 *
+	 * @param src_buffer the data of the source buffer, formatted as ABGR
+	 * @param src_row_span the byte-size of each row
+	 * @param src_rect The source rectangle
+	 * @param dest_rect The destination rectangle
+	 * 
+	 */
 	virtual void	Paint	(
-						unsigned char *src_buffer,
-						int src_row_span,
-						const Awesomium::Rect &src_rect,
-						const Awesomium::Rect &dest_rect
+						unsigned char*	src_buffer,
+						int				src_row_span,
+						const			Awesomium::Rect& src_rect,
+						const			Awesomium::Rect& dest_rect
 					);
 
+	/// Calls a redraw the window Inherited from Awesomium::Surface
 	virtual void 	Scroll (
-						int dx,
-						int dy,
-						const Awesomium::Rect &clip_rect
+						int		dx,
+						int		dy,
+						const	Awesomium::Rect &clip_rect
 					);
 
 private:
+	/// Pointer to SDL window
 	SDL_Window*		_window;
 
 }; // class GUISurface

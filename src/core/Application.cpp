@@ -15,14 +15,26 @@ Application::~Application	( void )
 	// empty
 }
 
+
+
 int		Application::exec		(void)
 {
 	Event event;
+
+	// Call the OnInit callbacks
+	OnInit.call(event);
+
 	while (!_willQuit) {
 		OnUpdate.call(event);
 	}
+
+	// Call the OnKill callbacks
+	OnKill.call(event);
+
 	return _exitCode;
 }
+
+
 
 bool	Application::exit			( int exitCode )
 {

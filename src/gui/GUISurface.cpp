@@ -36,6 +36,7 @@ void	GUISurface::Paint	(
 		)
 {
 	/// TODO(Etskh): Draw only what you need to draw
+
     SDL_Surface* screen = SDL_GetWindowSurface(_window);
 	SDL_Surface* websurface = SDL_CreateRGBSurfaceFrom(
 		src_buffer,
@@ -51,8 +52,6 @@ void	GUISurface::Paint	(
 
     SDL_BlitSurface(websurface, NULL, screen, NULL);
 	SDL_UpdateWindowSurface(_window);
-
-	printf("painting...\n");
 }
 
 void 	GUISurface::Scroll (

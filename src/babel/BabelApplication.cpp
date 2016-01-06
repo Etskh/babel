@@ -1,6 +1,10 @@
 
+
 // External libraries
 #include <SDL2/SDL_version.h>
+
+// STL includes
+#include <fstream>
 
 // Core includes
 #include "core/Event.hpp"
@@ -33,14 +37,32 @@ BabelApplication::BabelApplication( const core::Config& config )
 		compiled.major, compiled.minor, compiled.patch
 	);
 
+	// Add event listeners to the application
 	OnUpdate += CALLBACK( &BabelApplication::update );
-	
+
 	// Create the device
 	//config["width"] = "100";
 	//config["height"]= "100";
 	//config["title"] = "Babel Coder";
 	_device = gui::Device::create( this, config);
-	//_device->loadGUI("../data/");
+
+	// Load in file from data folder
+	//
+	std::ifstream ifs("../data/babel.html");
+	std::string contents( (std::istreambuf_iterator<char>(ifs) ),
+				   (std::istreambuf_iterator<char>()) );
+	//
+	// Replace the templates with our data
+	//
+	{
+		core::String contentStr(contents.c_str());
+		contentStr.replace("{{name}}","Core");
+		contentStr.replace("{{children}}","Childsss");
+
+		// Load the contents of the file into the device
+		//
+		_device->loadContent(contentStr.c_str());
+	}
 
 	printf(" -- end -- \n");
 }
