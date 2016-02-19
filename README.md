@@ -1,6 +1,5 @@
 # babel
 
-{{build-tag}}
 
 
 # Install
@@ -12,9 +11,9 @@ into their own library to improve compile times.
 
 #### Duktape
 
-_This step is already commited into the source-tree. Later, this might not be the case, but right now, you do not need to add or remove files from `extern`_
+_This step is already committed into the source-tree. Later, this might not be the case, but right now, you do not need to add or remove files from `extern`_
 
-~~Install Duktape into the `extern` folder. Certain sources link to them.~~
+~~Install [Duktape](http://duktape.org/) into the `extern` folder. Certain sources link to them.~~
 
 ## Frameworks
 
@@ -22,16 +21,16 @@ These are frameworks that the build system expects to exist globally. You might 
 
 #### Awesomium
 
-Install Awesomium from their website... cmake _should_ find it. We're using 1.7, and haven't tested with any other version.
+Install [Awesomium](http://www.awesomium.com/) from their website... cmake _should_ find it. We're using 1.7, and haven't tested with any other version.
 
 #### SDL2
 
-Install SDL2 from the website... cmake _should_ find it. We're using version 2, built from source, and haven't tested with any other version.
+Install [SDL2](https://www.libsdl.org/download-2.0.php) from the website... cmake _should_ find it. We're using version 2, built from source, and haven't tested with any other version.
 
 ## Tools
 
- * CMake to compile
- * The interface uses the LessCSS compiler - use `npm install less`
+ * [CMake](https://cmake.org/) to compile
+ * The interface uses the [LessCSS](http://lesscss.org/) compiler - use `npm install less`
  * _optional_ python 2.7 to lint
  * _optional_ Doxygen to generate documentation
 
@@ -70,4 +69,4 @@ To make documentation from the source code, run `doxygen` from the project direc
 
 # Contributors
 
-Etskh (http://github.com/Etskh)
+Etskh (http://github.com/Etskh) (http://jamescodes.ca)

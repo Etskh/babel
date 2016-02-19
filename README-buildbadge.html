@@ -1,0 +1,48 @@
+<html>
+<body>
+<style>
+	.build-matrix {
+		cursor:default;
+	}
+	.build-matrix span {
+		color: #CCCCCC !important;
+		text-shadow:#000 0 0 0.2em;
+		padding: 0.8em;
+		font-size:80%;
+		box-shadow: inset rgba(0,0,0,0.2) 0.4em 0.4em 0.5em;
+	}
+	.build-matrix span:last-child {
+		border-radius: 0 1em 1em 0;
+	}
+	.build-matrix .failed {
+		background-color:#903030
+	}
+	.build-matrix .passed {
+		background-color:#309030
+	}
+	.build-matrix .unknown {
+		background-color:#666; /* THE NUMBER OF THE BEAST */
+	}
+	.build-matrix .header {
+		box-shadow: none;
+		display:inline-block;
+		width:5em;
+		border-radius: 1em 0 0 1em;
+		background: rgba(107,107,107,1);
+		background: -moz-linear-gradient(top, rgba(107,107,107,1) 0%, rgba(31,31,31,1) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(107,107,107,1)), color-stop(100%, rgba(31,31,31,1)));
+		background: -webkit-linear-gradient(top, rgba(107,107,107,1) 0%, rgba(31,31,31,1) 100%);
+		background: -o-linear-gradient(top, rgba(107,107,107,1) 0%, rgba(31,31,31,1) 100%);
+		background: -ms-linear-gradient(top, rgba(107,107,107,1) 0%, rgba(31,31,31,1) 100%);
+		background: linear-gradient(to bottom, rgba(107,107,107,1) 0%, rgba(31,31,31,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#1f1f1f', GradientType=0 );
+	}
+</style>
+<div class="build-matrix">
+	<span class="header">build</span><span id="mac-build" class="failed" title="3 compilation errors">OSX</span><span id="lnx-build" class="unknown">Linux</span><span id="win-build" class="unknown">Win32</span>
+</div>
+<div class="build-matrix">
+	<span class="header">testing</span><span id="mac-build" class="unknown">OSX</span><span id="lnx-build" class="unknown">Linux</span><span id="win-build" class="unknown">Win32</span>
+</div>
+</body>
+</html>
